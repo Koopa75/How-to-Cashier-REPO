@@ -1,3 +1,6 @@
 /HowToCashier/Library/APIUpdater/ConfigurationCache
 /HowToCashier/Library/Artifacts
 /HowToCashier/Library
+/HowToCashier/Logs
+*.log
+/HowToCashierGame/Library
