@@ -29,4 +29,9 @@ public class PauseSystem : MonoBehaviour
         }
     }
 
+    public bool GetPauseState()
+    {
+        return isPaused;
+    }
+
 }

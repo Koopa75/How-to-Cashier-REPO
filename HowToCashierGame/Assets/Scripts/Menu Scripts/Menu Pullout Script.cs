@@ -20,12 +20,6 @@ public class MenuPulloutScript : MonoBehaviour
         barButton.SetActive(true);
     }
 
-    void Update()
-    {
-        
-    }
-
-
 
     public void OpenGameMenuPanel()
     {
