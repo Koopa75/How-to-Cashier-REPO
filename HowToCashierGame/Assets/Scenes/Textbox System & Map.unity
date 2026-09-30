@@ -3553,8 +3553,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -200}
-  m_SizeDelta: {x: -200, y: -600}
+  m_AnchoredPosition: {x: 0, y: 348.87378}
+  m_SizeDelta: {x: -200, y: -775.7476}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &508493490
 MonoBehaviour:
@@ -3608,8 +3608,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 606020930}
   lines:
-  - Welcome to the Tutorial!
-  - This will most likely be changed later!
+  - Welcome to the Tutorial! This is a helpful prototype text box! Press E to go
+    to the next textbox!
+  - To play, simply click & hold the left mouse button while hoving over an item.
+  - Once you're holding an item, drag it over to the scanner on the register to scan
+    it.
+  - Once this is done, place the item to your left & click near the bagging area.
+    An indicator will light up when hovering over the area.
+  - After moving to the bagging area, click & drag the item into a bag to bag it.
   textSpeed: 0.1
 --- !u!1001 &513897550
 PrefabInstance:
