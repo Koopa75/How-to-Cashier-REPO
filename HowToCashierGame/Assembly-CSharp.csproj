@@ -62,7 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Minidisplay.cs" />
+    <Compile Include="Assets\Scripts\Sound Scripts\SoundSystem.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Sound Scripts\MainMusicScript.cs" />
     <Compile Include="Assets\Scripts\Menu Scripts\Pause System.cs" />
     <Compile Include="Assets\Scripts\Menu Scripts\MenuTraversalSystem.cs" />
     <Compile Include="Assets\Scripts\Dialogue.cs" />
