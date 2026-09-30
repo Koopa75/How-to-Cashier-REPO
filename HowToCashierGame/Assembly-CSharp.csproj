@@ -63,10 +63,19 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Minidisplay.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+<<<<<<< Updated upstream
+=======
+    <Compile Include="Assets\Scripts\Menu Scripts\Pause System.cs" />
+    <Compile Include="Assets\Scripts\CheckoutBag.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\MenuTraversalSystem.cs" />
+    <Compile Include="Assets\Scripts\Dialogue.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\Menu Pullout Script.cs" />
+>>>>>>> Stashed changes
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Scanner.cs" />
     <Compile Include="Assets\Scripts\InteractionController.cs" />
     <Compile Include="Assets\Scripts\PhysicsItem.cs" />
+    <Compile Include="Assets\Scripts\ItemModel.cs" />
     <Compile Include="Assets\Scripts\CameraTransitionButton.cs" />
   </ItemGroup>
   <ItemGroup>

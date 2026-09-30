@@ -56,11 +56,20 @@ public class PlayerController : MonoBehaviour
             {
                 if (cameraTransitionButtons[i] == button)
                 {
+<<<<<<< Updated upstream
                     cameraTransitionButtons[i].TryMouseEnter();
+=======
+                    holding.UpdateDrag(hit.point + holdingObjectOffset);
+>>>>>>> Stashed changes
                 }
                 else
                 {
+<<<<<<< Updated upstream
                     cameraTransitionButtons[i].TryMouseExit();
+=======
+                    holding.Drop();
+                    holding = null;
+>>>>>>> Stashed changes
                 }
             }
         }
@@ -92,7 +101,34 @@ public class PlayerController : MonoBehaviour
                 CameraTransitionButton button = obj.GetComponent<CameraTransitionButton>();
                 if (button != null)
                 {
+<<<<<<< Updated upstream
                     button.Click();
+=======
+                    GameObject obj = hit.collider.gameObject;
+                    PhysicsItem item = obj.GetComponent<PhysicsItem>();
+                    if (item != null)
+                    {
+                        holdingPlaneOffset = hit.point.y;
+                        helperPlane.transform.position = new Vector3(helperPlane.transform.position.x, holdingPlaneOffset, helperPlane.transform.position.y);
+                        /*
+                        if (Physics.Raycast(clickRay, out RaycastHit hit2, 100f, LayerMask.GetMask("Click Helper")))
+                        {
+                            holdingObjectOffset = obj.transform.position - hit2.point;
+                        }*/
+                        holdingObjectOffset = obj.transform.position - hit.point;
+                        holding = item;
+                        holding.Pickup();
+                    }
+                }
+                else if (Physics.Raycast(clickRay, out hit, 100f, LayerMask.GetMask("UI")))
+                {
+                    GameObject obj = hit.collider.gameObject;
+                    CameraTransitionButton button = obj.GetComponent<CameraTransitionButton>();
+                    if (button != null)
+                    {
+                        button.Click();
+                    }
+>>>>>>> Stashed changes
                 }
             }
         }

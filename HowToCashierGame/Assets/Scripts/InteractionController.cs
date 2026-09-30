@@ -20,6 +20,7 @@ public class InteractionController : MonoBehaviour
     {
         _instance = this;
         Total = 0;
+        items = new List<ItemModel>();
     }
 
     public int Total
@@ -43,4 +44,6 @@ public class InteractionController : MonoBehaviour
     public Minidisplay minidisplay;
 
     private int total;
+
+    private List<ItemModel> items;
 }
