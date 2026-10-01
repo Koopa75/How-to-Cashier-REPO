@@ -7,6 +7,8 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour
 {
     public PauseSystem IsGamePaused;
+    public SettingsScript mouseSensitivity;
+    public MenuPulloutScript isMenuOpen;
     public static PlayerController instance
     {
         get
@@ -184,8 +186,7 @@ public class PlayerController : MonoBehaviour
         {
             freeRoamCamRot = 180f;
             freeRoamCamTilt = 0f;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            
             mainCamera.transform.SetParent(transform);
             mainCamera.transform.localPosition = Vector3.up * 0.55f;
             mainCamera.transform.localRotation = Quaternion.identity;
@@ -230,6 +231,26 @@ public class PlayerController : MonoBehaviour
         }
         currentCam = cam;
         InteractionController.instance.UpdateCost();
+    }
+
+
+
+    public void ChangeCursorState()
+    {
+        if (currentCam == -1)
+        {
+            if (isMenuOpen.GetMenuOpenCloseState())
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                Debug.Log("Cam should be Visable");
+            }
+            else
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
     }
 
     public Camera mainCamera;

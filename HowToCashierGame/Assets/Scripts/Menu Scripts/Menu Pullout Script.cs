@@ -1,16 +1,22 @@
+using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
 public class MenuPulloutScript : MonoBehaviour
 {
+    public PlayerController playerController;
+    public MenuTraversalSystem menuTraversalSystem;
 
     public GameObject barButton;
     public GameObject inGameMenuPanel;
 
+
     private Vector3 currentPosition;
     private float movePanelMax = 500f;
 
+    private bool isOpen = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,9 +26,28 @@ public class MenuPulloutScript : MonoBehaviour
         barButton.SetActive(true);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab)) {
+            if (!menuTraversalSystem.CheckAnyOpenSettingPanelState()) {
+                if (isOpen)
+                {
+                    CloseGameMenuPanel();
+                }
+                else
+                {
+                    OpenGameMenuPanel();
+                }
+            }
+
+        }
+    }
+
 
     public void OpenGameMenuPanel()
     {
+        isOpen = true;
+        playerController.ChangeCursorState();
         inGameMenuPanel.SetActive(true);
 
         Vector3 startPos = inGameMenuPanel.transform.position;
@@ -39,7 +64,8 @@ public class MenuPulloutScript : MonoBehaviour
 
     public void CloseGameMenuPanel()
     {
-
+        isOpen = false;
+        playerController.ChangeCursorState();
         Vector3 startPos = inGameMenuPanel.transform.position;
         Vector3 endPos = new Vector3(
             startPos.x + movePanelMax,
@@ -88,5 +114,10 @@ public class MenuPulloutScript : MonoBehaviour
 
         menuPanel.transform.position = targetPos;
         inGameMenuPanel.SetActive(false);
+    }
+
+    public bool GetMenuOpenCloseState()
+    {
+        return isOpen;
     }
 }
