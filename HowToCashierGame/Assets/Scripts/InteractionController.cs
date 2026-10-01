@@ -20,7 +20,8 @@ public class InteractionController : MonoBehaviour
     {
         _instance = this;
         Total = 0;
-        difficultyRamping = 4f;
+        difficultyRamping = 3f;
+        SpawnNewItems();
     }
 
     public void Update()
@@ -70,6 +71,7 @@ public class InteractionController : MonoBehaviour
     {
         int _total = 0;
         bool allBagged = true;
+        if (PlayerController.instance.currentCam == -1) allBagged = false;
         foreach (ItemModel item in itemList)
         {
             if (item.scanned && !item.payed) _total += item.Cost;
@@ -104,7 +106,7 @@ public class InteractionController : MonoBehaviour
         difficultyRamping += 1f;
         for (int i = 0; i < (int)difficultyRamping; i++)
         {
-            Instantiate(itemprefabs[Random.Range(0, itemprefabs.Length)], new Vector3(-0.75f, 1.5f, 0f) + Random.insideUnitSphere * 0.25f, Random.rotation, itemsparent);
+            Instantiate(itemprefabs[Random.Range(0, itemprefabs.Length)], itemsparent.position + new Vector3(-0.75f, 1.5f, 0f) + Random.insideUnitSphere * 0.25f, Random.rotation, itemsparent);
         }
     }
 
