@@ -37,12 +37,11 @@ public class PlayerController : MonoBehaviour
             {
                 if (Physics.Raycast(clickRay, out RaycastHit hit, 100f, LayerMask.GetMask("Click Helper")))
                 {
-                    holding.transform.position = hit.point + holdingObjectOffset;
+                    holding.UpdateDraggingPosition(hit.point + holdingObjectOffset);
                 }
                 if (!clickAction.IsPressed() || clickAction.WasReleasedThisFrame())
                 {
-                    holding.gameObject.layer = 7;
-                    holding.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                    holding.Drop();
                     holding = null;
                 }
             }
@@ -85,8 +84,7 @@ public class PlayerController : MonoBehaviour
                         }*/
                         holdingObjectOffset = obj.transform.position - hit.point;
                         holding = item;
-                        holding.gameObject.layer = 8;
-                        holding.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                        holding.Pickup();
                     }
                 }
                 else if (Physics.Raycast(clickRay, out hit, 100f, LayerMask.GetMask("UI")))

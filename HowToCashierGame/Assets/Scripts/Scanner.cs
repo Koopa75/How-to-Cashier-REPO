@@ -11,7 +11,7 @@ public class Scanner : MonoBehaviour
         PhysicsItem item = other.gameObject.GetComponent<PhysicsItem>();
         if (item != null)
         {
-            if (!item.isScanned)
+            if (!item.item.scanned)
             {
                 if (item.Scan())
                 {
