@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         {
             if (currentCam == -1)
             {
-                Vector2 lookDesire = lookAction.ReadValue<Vector2>();
+                Vector2 lookDesire = lookAction.ReadValue<Vector2>() * mouseSensitivity.GetMouseSensitivity();
                 lookDesire /= 6f;
                 lookDesire *= 120f;
                 lookDesire *= Time.deltaTime;

@@ -40,3 +40,14 @@ CONTROLS:
 		If you wish to then return to the register view then move your muse to the bottom right where there now now a new slightly highlighted area
 		Once this area is hovered over it will turn a slight green like before
 		Click on this are and you will return to the register view
+
+
+SETUP:
+	There is not much setup that is needed for this game at all. Once you get in the main menu as will be implemented later on.
+	Just start the game and it will see that it is your first time playing and send you the tutorial dialouge like mentioned before
+	I guess the only setup you might need will come from the settings where the will be things you can enable to change like sound volume, resolution, shader, etc.
+	But there is nothing needed for set up
+	To Set up the game itself just open the build folder and click the executable file in there to open it, and once thats done it will open the game
+
+FINAL VIDEO LINK: https://youtu.be/Xok9gvTODmY
+Everything is the same except the mouse sensitivity has been implemented now
