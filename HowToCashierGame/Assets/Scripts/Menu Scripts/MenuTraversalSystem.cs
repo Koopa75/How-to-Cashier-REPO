@@ -1,5 +1,6 @@
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuTraversalSystem : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class MenuTraversalSystem : MonoBehaviour
     public GameObject MusicPanel;
     public GameObject MenuPanel;
 
+    public MenuPulloutScript MenuPullout;
     private bool isAnyPanelOpen;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -52,6 +54,12 @@ public class MenuTraversalSystem : MonoBehaviour
         PlayerInfoPanel.SetActive(false);
         MenuPanel.SetActive(true);
         pauseState.ChangePauseState();
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+
     }
 
     public bool CheckAnyOpenSettingPanelState()

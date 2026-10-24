@@ -28,8 +28,11 @@ public class MenuPulloutScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab)) {
-            if (!menuTraversalSystem.CheckAnyOpenSettingPanelState()) {
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (!menuTraversalSystem.CheckAnyOpenSettingPanelState())
+            {
                 if (isOpen)
                 {
                     CloseGameMenuPanel();
@@ -39,8 +42,7 @@ public class MenuPulloutScript : MonoBehaviour
                     OpenGameMenuPanel();
                 }
             }
-
-        }
+        }  
     }
 
 
