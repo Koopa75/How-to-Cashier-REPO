@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PauseSystem : MonoBehaviour
 {
+    public static PauseSystem instance;
+
     public TextMeshProUGUI pausedText;
     public bool isPaused;
 

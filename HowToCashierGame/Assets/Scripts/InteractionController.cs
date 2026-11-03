@@ -1,11 +1,17 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using TMPro;
-using System.Collections.Generic;
+using static UnityEditor.Progress;
 
 public class InteractionController : MonoBehaviour
 {
+    public CustomerSpawner removeCustomer;
+
+    public TextMeshProUGUI CustomersServedText;
+    private int CustomersServed = 0;
+
     public static InteractionController instance
     {
         get
@@ -65,6 +71,7 @@ public class InteractionController : MonoBehaviour
         }
         itemList.Clear();
         UpdateCost();
+        removeCustomer.RemoveCustomer();
     }
 
     public void UpdateCost()
@@ -97,6 +104,10 @@ public class InteractionController : MonoBehaviour
             }
         }
         ClearItems();
+
+        CustomersServed++;
+        CustomersServedText.SetText("Customers Served: " + CustomersServed);
+
         SpawnNewItems();
         UpdateCost();
     }
