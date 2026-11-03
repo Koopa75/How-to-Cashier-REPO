@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Dialogue : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
+    public GameObject MrCentImage;
     public string[] lines;
     public float textSpeed;
 
