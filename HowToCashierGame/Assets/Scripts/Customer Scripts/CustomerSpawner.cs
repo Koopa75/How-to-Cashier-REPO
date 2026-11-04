@@ -12,18 +12,20 @@ public class CustomerSpawner : MonoBehaviour
     public int customerDistance = 1;
     public int MaxCustomers = 3;
     public int SpawnInterval = 5;
+    public int SpawnChance = 7;
+
 
     private float SpawnCustomerTimer = 0;
 
     private List<GameObject> CurrentCustomers = new List<GameObject>();
 
-    //private Queue<GameObject> CurrentCustomers = new Queue<GameObject>();
+    //private Animator CustomerAnimations;
 
     public static CustomerSpawner Instance;
-    //public CustomerBehavior customerBehavior;
 
     void Start()
     {
+        //CustomerAnimations = GetComponent<Animator>();
         Transform NewCustomerPos = FirstInLinePosition;
         Debug.Log(FirstInLinePosition.localPosition);
         for (int i = 0; i < 2; i++)
@@ -33,11 +35,15 @@ public class CustomerSpawner : MonoBehaviour
 
     }
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
 
     private void Update()
     {
         SpawnCustomerTimer += Time.deltaTime;
-        Debug.Log(SpawnCustomerTimer);
         if (CurrentCustomers.Count < MaxCustomers)
         {
             if (SpawnCustomerTimer >= SpawnInterval)
@@ -51,16 +57,7 @@ public class CustomerSpawner : MonoBehaviour
     private void SpawnCustomer()
     {
         int CustomerChoice = UnityEngine.Random.Range(0, CustomerPrefab.Length);
-        GameObject Customer;
-        if (CurrentCustomers.Count == 0)
-        {
-            Customer = Instantiate(CustomerPrefab[CustomerChoice], FirstInLinePosition.position, FirstInLinePosition.rotation);
-        }
-        else
-        {
-            Transform customerPosition = GetCustomerSpawnPos();
-            Customer = Instantiate(CustomerPrefab[CustomerChoice], customerPosition.position, customerPosition.rotation);
-        }
+        GameObject Customer = Instantiate(CustomerPrefab[CustomerChoice], GetLinePosition(CurrentCustomers.Count), Quaternion.identity);
         Customer.transform.SetParent(CustomerHolder);
         CurrentCustomers.Add(Customer);
     }
@@ -80,25 +77,19 @@ public class CustomerSpawner : MonoBehaviour
 
     public void MoveUpCustomers()
     {
-        FirstInLinePosition.localPosition = Vector3.zero;
+        int counter = 0;
         if (CurrentCustomers.Count > 0)
         {
             for (int i = 0; i < CurrentCustomers.Count; i++)
             {
-                if (i == 0)
-                {
-                    CurrentCustomers[i].transform.position = FirstInLinePosition.position;
-                }
-                else
-                {
-                    Vector3 NewCusPos = new Vector3(FirstInLinePosition.position.x - (1 * i), FirstInLinePosition.position.y, FirstInLinePosition.position.z);
-                    CurrentCustomers[i].transform.position = NewCusPos;
-                }
+                Vector3 targetPosition = new Vector3(FirstInLinePosition.position.x - (1 * i), FirstInLinePosition.position.y, FirstInLinePosition.position.z);
+                CurrentCustomers[i].GetComponent<CustomerBehavior>().NewTargetPosition(targetPosition);
 
                 Debug.Log("Customer " + i + "'s position: " + CurrentCustomers[i].transform.position);
+                counter++;
             }
+
         }
-        
     }
 
     public Transform GetCustomerSpawnPos()
@@ -117,10 +108,17 @@ public class CustomerSpawner : MonoBehaviour
 
     public void RandCusSpawnChance()
     {
-        int value = UnityEngine.Random.Range(0, 10);
+        int value = UnityEngine.Random.Range(0, SpawnChance);
         if (value < 3)
         {
             SpawnCustomer();
         }
     }
+
+
+    public Vector3 GetLinePosition(int index)
+    {
+        return FirstInLinePosition.position + Vector3.left * index * customerDistance;
+    }
+
 }
