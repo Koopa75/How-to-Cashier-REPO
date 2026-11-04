@@ -6,6 +6,7 @@ public class SoundSystem : MonoBehaviour
 
     public Slider MusicVolumeSlider;
     public Slider MasterVolumeSlider;
+    public Slider SoundEffectVolumeSlider;
     void Start()
     {
         
@@ -16,6 +17,7 @@ public class SoundSystem : MonoBehaviour
     {
         CheckMasterSliderValue();
         CheckMusicSliderVolume();
+        CheckSoundEffectSliderValue();
     }
 
     public float CheckMusicSliderVolume()
@@ -25,5 +27,9 @@ public class SoundSystem : MonoBehaviour
     public float CheckMasterSliderValue()
     {
         return MasterVolumeSlider.value;
+    }
+    public float CheckSoundEffectSliderValue()
+    {
+        return SoundEffectVolumeSlider.value;
     }
 }

@@ -25,7 +25,11 @@ public class DayScript : MonoBehaviour
 
     void Update()
     {
+        if (GameState.InDialogue)
+            return;
+
         Timer += Time.deltaTime;
+
         if (Timer >= 1)
         {
             dayTimer--;
@@ -34,7 +38,7 @@ public class DayScript : MonoBehaviour
         }
 
         CheckIfDayIsOver();
-       
+
     }
 
     public void CalcTime()

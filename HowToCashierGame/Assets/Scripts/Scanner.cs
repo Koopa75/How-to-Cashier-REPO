@@ -6,6 +6,13 @@ using System.Collections.Generic;
 
 public class Scanner : MonoBehaviour
 {
+    public AudioSource scanSound;
+    public SoundSystem scannerSystem;
+
+    public void Update()
+    {
+        
+    }
     public void OnTriggerEnter(Collider other)
     {
         PhysicsItem item = other.gameObject.GetComponent<PhysicsItem>();
@@ -15,7 +22,8 @@ public class Scanner : MonoBehaviour
             {
                 if (item.Scan())
                 {
-                    // Scanning sound effect
+                    scanSound.time = 0.7f;
+                    scanSound.Play();
                 }
                 else
                 {

@@ -29,7 +29,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void LoadNewGame()
     {
-        SceneManager.LoadScene("Scene 1");
+        SceneManager.LoadScene("Opening Mr. Cent Tutorial Text");
     }
 
 

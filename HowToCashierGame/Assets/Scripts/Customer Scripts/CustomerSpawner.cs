@@ -15,6 +15,7 @@ public class CustomerSpawner : MonoBehaviour
     public int SpawnChance = 7;
 
 
+
     private float SpawnCustomerTimer = 0;
 
     private List<GameObject> CurrentCustomers = new List<GameObject>();
@@ -28,10 +29,7 @@ public class CustomerSpawner : MonoBehaviour
         //CustomerAnimations = GetComponent<Animator>();
         Transform NewCustomerPos = FirstInLinePosition;
         Debug.Log(FirstInLinePosition.localPosition);
-        for (int i = 0; i < 2; i++)
-        {
-            SpawnCustomer();
-        }
+        SpawnCustomer();
 
     }
 

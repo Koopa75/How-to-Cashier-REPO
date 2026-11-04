@@ -8,7 +8,7 @@ using static UnityEditor.Progress;
 public class InteractionController : MonoBehaviour
 {
     public CustomerSpawner removeCustomer;
-
+    public AudioSource checkoutSound;
     public TextMeshProUGUI CustomersServedText;
     private int CustomersServed = 0;
 
@@ -100,7 +100,8 @@ public class InteractionController : MonoBehaviour
             if (item.bagged)
             {
                 // code for customer paying cost of item
-                item.payed = true;
+                checkoutSound.time = 1.5f;
+                checkoutSound.Play();
             }
         }
         ClearItems();

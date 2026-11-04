@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene 1.unity
     guid: 7bb5776366bf1bc48929b88464d3abdd
   - enabled: 1
-    path: Assets/Scenes/Textbox System & Map.unity
+    path: Assets/Scenes/Opening Mr. Cent Tutorial Text.unity
     guid: d2467888fc53f4344a5e71bbaf1422d7
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
