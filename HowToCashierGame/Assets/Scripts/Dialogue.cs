@@ -7,8 +7,14 @@ public class Dialogue : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
     public GameObject MrCentImage;
+    public GameObject registerScreen;
+    public GameObject scanningScreen;
+    public GameObject baggingScreen;
+    public GameObject checkoutScreen;
+    public GameObject settingsScreen;
     public string[] lines;
     public float textSpeed;
+    public float textCount = 0;
 
     private int index;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -55,8 +61,37 @@ public class Dialogue : MonoBehaviour
         if (index < lines.Length - 1)
         {
             index++;
+            textCount++;
             textComponent.text = string.Empty;
-            StartCoroutine(TypeLine());
+            if(textCount == 7)
+            {
+                registerScreen.SetActive(true);
+            }
+            else if (textCount == 8)
+            {
+                registerScreen.SetActive(false);
+                scanningScreen.SetActive(true);
+            }
+            else if(textCount == 9)
+            {
+                scanningScreen.SetActive(false);
+                baggingScreen.SetActive(true);
+            }
+            else if(textCount == 10)
+            {
+                baggingScreen.SetActive(false);
+                checkoutScreen.SetActive(true);
+            }
+            else if(textCount == 11)
+            {
+                checkoutScreen.SetActive(false);
+                settingsScreen.SetActive(true);
+            }
+            else if(textCount == 12)
+            {
+                settingsScreen.SetActive(false);
+            }
+                StartCoroutine(TypeLine());
         }
         else
         {
