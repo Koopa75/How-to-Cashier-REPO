@@ -354,7 +354,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d05ff70585c8da042892a8b6e10eaacc, type: 2}
+  - {fileID: 2100000, guid: 2c99423459c4fbc47ae231b6931f014c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2222,7 +2222,7 @@ GameObject:
   - component: {fileID: -3051952888206914823}
   - component: {fileID: 6745227307008619409}
   m_Layer: 0
-  m_Name: BroModel
+  m_Name: Bro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2238,7 +2238,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4827020578715282168}
@@ -2279,6 +2279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Customer: {fileID: 5005677153021145635}
+  targetPosition: {x: 0, y: 0, z: 0}
+  moveSpeed: 1
 --- !u!1 &5099461488973823413
 GameObject:
   m_ObjectHideFlags: 0
