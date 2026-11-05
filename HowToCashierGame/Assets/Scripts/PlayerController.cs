@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public PauseSystem IsGamePaused;
     public SettingsScript mouseSensitivity;
     public MenuPulloutScript isMenuOpen;
+
+    private bool isAtRegister = false;
     public static PlayerController instance
     {
         get
@@ -231,6 +233,7 @@ public class PlayerController : MonoBehaviour
         }
         currentCam = cam;
         InteractionController.instance.UpdateCost();
+        isAtRegister = true;
     }
 
 
@@ -253,6 +256,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+
+    public bool getIsAtRegister()
+    {
+        return isAtRegister;
+    }
+
     public Camera mainCamera;
     public GameObject helperPlane;
     public Transform[] cameraControlPoints;
@@ -269,4 +279,5 @@ public class PlayerController : MonoBehaviour
     private InputAction lookAction;
     private float freeRoamCamRot;
     private float freeRoamCamTilt;
+
 }

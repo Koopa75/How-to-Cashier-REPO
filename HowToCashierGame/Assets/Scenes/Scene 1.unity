@@ -444,6 +444,7 @@ RectTransform:
   - {fileID: 371455309}
   - {fileID: 1787418700}
   - {fileID: 859120879}
+  - {fileID: 391267355}
   m_Father: {fileID: 1340739463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4778,11 +4779,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 852244704}
   toggleTransition: 1
   graphic: {fileID: 1320562531}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 391267356}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!4 &377666938 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 673038586419297847, guid: 5b4ab89fc44eea1438ea3ab8701aa82d, type: 3}
@@ -4912,6 +4913,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5673045923779321326, guid: 3ac8934d10cd56a478aafa54a3f6527a, type: 3}
   m_PrefabInstance: {fileID: 1167981990}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &391267354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 391267355}
+  - component: {fileID: 391267356}
+  m_Layer: 5
+  m_Name: Song Toggler Group
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &391267355
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391267354}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 34278065}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -48.34204, y: -61.939575}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &391267356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391267354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 1
 --- !u!1001 &396793181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8389,7 +8439,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Song 1
+  m_Text: Song 2
 --- !u!222 &618421402
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8764,7 +8814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scanSound: {fileID: 406042157}
-  scannerSystem: {fileID: 0}
+  scannerSystem: {fileID: 1241372429}
 --- !u!65 &662466235
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9889,7 +9939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &743385160
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9985,7 +10035,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Song 2
+  m_Text: Song 1
 --- !u!222 &746002796
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11484,6 +11534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b8941e5c5b270479de78fba73f4706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkoutSoundVolume: {fileID: 1241372429}
   removeCustomer: {fileID: 545392318}
   checkoutSound: {fileID: 1116744472}
   CustomersServedText: {fileID: 908347163}
@@ -11986,7 +12037,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1784199715}
   toggleTransition: 1
   graphic: {fileID: 1682172004}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 391267356}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -17161,7 +17212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MusicVolumeSlider: {fileID: 1532488629}
   MasterVolumeSlider: {fileID: 567639240}
-  SoundEffectVolumeSlider: {fileID: 0}
+  SoundEffectVolumeSlider: {fileID: 1998285266}
 --- !u!114 &1241372430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18529,7 +18580,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1340739463
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24429,11 +24480,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1887535331}
   toggleTransition: 1
   graphic: {fileID: 1596432536}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 391267356}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1001 &1789585686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24535,10 +24586,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be0b5823dee2c946b65172c8dab5e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atRegisterChecker: {fileID: 402508393}
   dayTime: {fileID: 2133993828}
   GameOverPanel: {fileID: 2079657629}
   dayTimer: 100
   isDayOver: 0
+  atRegister: 0
 --- !u!1 &1791662260
 GameObject:
   m_ObjectHideFlags: 0
@@ -24585,7 +24638,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainMusic: {fileID: 1791662263}
+  Song1: {fileID: 8300000, guid: df17c787f696bf64fbeb48b7d5588f2e, type: 3}
+  Song2: {fileID: 8300000, guid: d824d318ee22ad94ba15f1dd03b66046, type: 3}
   MainMusicSliderVolume: {fileID: 1241372429}
+  Song1Toggle: {fileID: 371455310}
+  Song2Toggle: {fileID: 1787418701}
+  Song3Toggle: {fileID: 859120880}
 --- !u!82 &1791662263
 AudioSource:
   m_ObjectHideFlags: 0
@@ -28586,7 +28644,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1, y: -2.0690918}
+  m_AnchoredPosition: {x: -1, y: -3.1613}
   m_SizeDelta: {x: -0.3703, y: 6.3226}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2112156887

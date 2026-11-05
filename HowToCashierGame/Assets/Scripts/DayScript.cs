@@ -5,6 +5,8 @@ using UnityEngine.UIElements;
 
 public class DayScript : MonoBehaviour
 {
+    public PlayerController atRegisterChecker;
+
 
     public TextMeshProUGUI dayTime;
     public GameObject GameOverPanel;
@@ -12,6 +14,7 @@ public class DayScript : MonoBehaviour
 
     private float Timer = 0;
     public bool isDayOver = false;
+    public bool atRegister = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
 
@@ -25,19 +28,23 @@ public class DayScript : MonoBehaviour
 
     void Update()
     {
-        if (GameState.InDialogue)
-            return;
-
-        Timer += Time.deltaTime;
-
-        if (Timer >= 1)
+        if (atRegister)
         {
-            dayTimer--;
-            CalcTime();
-            Timer = 0;
-        }
+            if (GameState.InDialogue)
+                return;
 
-        CheckIfDayIsOver();
+            Timer += Time.deltaTime;
+
+            if (Timer >= 1)
+            {
+                dayTimer--;
+                CalcTime();
+                Timer = 0;
+            }
+
+            CheckIfDayIsOver();
+        }
+        atRegister = atRegisterChecker.getIsAtRegister();
 
     }
 

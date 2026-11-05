@@ -7,6 +7,8 @@ using static UnityEditor.Progress;
 
 public class InteractionController : MonoBehaviour
 {
+    public SoundSystem checkoutSoundVolume;
+
     public CustomerSpawner removeCustomer;
     public AudioSource checkoutSound;
     public TextMeshProUGUI CustomersServedText;
@@ -99,6 +101,8 @@ public class InteractionController : MonoBehaviour
         {
             if (item.bagged)
             {
+           
+                checkoutSound.volume = checkoutSoundVolume.CheckSoundEffectSliderValue() * checkoutSoundVolume.CheckMasterSliderValue();
                 // code for customer paying cost of item
                 checkoutSound.time = 1.5f;
                 checkoutSound.Play();

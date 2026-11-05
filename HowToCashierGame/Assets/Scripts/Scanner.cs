@@ -22,6 +22,8 @@ public class Scanner : MonoBehaviour
             {
                 if (item.Scan())
                 {
+
+                    scanSound.volume = scannerSystem.CheckSoundEffectSliderValue() * scannerSystem.CheckMasterSliderValue();
                     scanSound.time = 0.7f;
                     scanSound.Play();
                 }
