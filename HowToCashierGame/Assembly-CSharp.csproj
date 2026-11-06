@@ -61,29 +61,29 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.58f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\RemoveLater\TutorialManager.cs" />
     <Compile Include="Assets\Scripts\Minidisplay.cs" />
     <Compile Include="Assets\Scripts\Sound Scripts\SoundSystem.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Customer Scripts\CustomerSpawner.cs" />
     <Compile Include="Assets\Scripts\Sound Scripts\MainMusicScript.cs" />
-    <Compile Include="Assets\Scripts\Tutorial Text.cs" />
     <Compile Include="Assets\Scripts\Menu Scripts\Main Menu Script.cs" />
     <Compile Include="Assets\Scripts\Customer Scripts\CustomerBehavior.cs" />
     <Compile Include="Assets\Scripts\Menu Scripts\Pause System.cs" />
+    <Compile Include="Assets\Scripts\RemoveLater\Tutorial Text.cs" />
     <Compile Include="Assets\Scripts\CheckoutBag.cs" />
     <Compile Include="Assets\Scripts\Menu Scripts\MenuTraversalSystem.cs" />
     <Compile Include="Assets\Scripts\Dialogue.cs" />
     <Compile Include="Assets\Scripts\Menu Scripts\Menu Pullout Script.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\RemoveLater\Game State.cs" />
     <Compile Include="Assets\Scripts\Scanner.cs" />
     <Compile Include="Assets\Scripts\InteractionController.cs" />
     <Compile Include="Assets\Scripts\PhysicsItem.cs" />
     <Compile Include="Assets\Scripts\DayScript.cs" />
-    <Compile Include="Assets\Scripts\TutorialManager.cs" />
     <Compile Include="Assets\Scripts\ItemModel.cs" />
     <Compile Include="Assets\Scripts\CameraTransitionButton.cs" />
     <Compile Include="Assets\Scripts\Menu Scripts\SettingsScript.cs" />
-    <Compile Include="Assets\Scripts\Game State.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
