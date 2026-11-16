@@ -33,4 +33,10 @@ public class MainMenuScript : MonoBehaviour
     }
 
 
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
+
+
 }

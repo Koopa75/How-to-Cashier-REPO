@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.IO.Enumeration;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
@@ -8,6 +9,7 @@ public class MenuPulloutScript : MonoBehaviour
 {
     public PlayerController playerController;
     public MenuTraversalSystem menuTraversalSystem;
+    public PauseSystem pauseSystem;
 
     public GameObject barButton;
     public GameObject inGameMenuPanel;
@@ -17,6 +19,7 @@ public class MenuPulloutScript : MonoBehaviour
     private float movePanelMax = 500f;
 
     private bool isOpen = false;
+    private bool finisedOpening = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,7 +37,7 @@ public class MenuPulloutScript : MonoBehaviour
             if (!menuTraversalSystem.CheckAnyOpenSettingPanelState())
             {
                 if (isOpen)
-                {
+                { 
                     CloseGameMenuPanel();
                 }
                 else
@@ -58,7 +61,6 @@ public class MenuPulloutScript : MonoBehaviour
             startPos.y,
             startPos.z
         );
-
         StartCoroutine(SlidePanelIn(inGameMenuPanel, endPos, 0.4f));
 
         barButton.SetActive(false);
@@ -66,6 +68,7 @@ public class MenuPulloutScript : MonoBehaviour
 
     public void CloseGameMenuPanel()
     {
+        pauseSystem.ChangePauseState();
         isOpen = false;
         playerController.ChangeCursorState();
         Vector3 startPos = inGameMenuPanel.transform.position;
@@ -95,7 +98,7 @@ public class MenuPulloutScript : MonoBehaviour
 
             yield return null;
         }
-
+        pauseSystem.ChangePauseState();
         menuPanel.transform.position = targetPos;
     }
 
@@ -122,4 +125,5 @@ public class MenuPulloutScript : MonoBehaviour
     {
         return isOpen;
     }
+
 }

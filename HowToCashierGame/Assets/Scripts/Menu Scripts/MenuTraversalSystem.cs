@@ -29,14 +29,14 @@ public class MenuTraversalSystem : MonoBehaviour
         isAnyPanelOpen = true;
         SettingPanel.SetActive(true);
         MenuPanel.SetActive(false);
-        pauseState.ChangePauseState();
+
     }
     public void OpenMusicPanel()
     {
         isAnyPanelOpen = true;
         MusicPanel.SetActive(true);
         MenuPanel.SetActive(false);
-        pauseState.ChangePauseState();
+
     }
     
     public void OpenPlayerInfoPanel()
@@ -44,15 +44,15 @@ public class MenuTraversalSystem : MonoBehaviour
         isAnyPanelOpen = true;
         PlayerInfoPanel.SetActive(true);
         MenuPanel.SetActive(false);
-        pauseState.ChangePauseState();
+
     }
 
     public void OpenMrCentPanel()
     {
         isAnyPanelOpen = true;
-        MenuPanel.SetActive(false);
         MrCentPanel.SetActive(true);
-        pauseState.ChangePauseState();
+        MenuPanel.SetActive(false);
+
     }
 
     public void CloseOpenPanel()
@@ -63,7 +63,6 @@ public class MenuTraversalSystem : MonoBehaviour
         PlayerInfoPanel.SetActive(false);
         MrCentPanel.SetActive(false);
         MenuPanel.SetActive(true);
-        pauseState.ChangePauseState();
     }
 
     public void BackToMainMenu()

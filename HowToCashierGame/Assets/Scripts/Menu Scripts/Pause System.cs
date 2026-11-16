@@ -24,7 +24,6 @@ public class PauseSystem : MonoBehaviour
             Time.timeScale = 1.0f;
             if (PlayerController.instance.currentCam == -1)
             {
-                Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.Locked;
             }
         }
@@ -33,7 +32,6 @@ public class PauseSystem : MonoBehaviour
             pausedText.alpha = 255f;
             isPaused = true;
             Time.timeScale = 0.0f;
-            Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
     }
