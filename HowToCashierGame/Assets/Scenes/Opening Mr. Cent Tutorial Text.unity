@@ -309,9 +309,28 @@ MonoBehaviour:
     button to bring in a new customer!
   - Lastly, you can look through different settings and menus by pressing the left
     mouse button on the icon to the right to navigate the menus.
+  - There's also a handbook there if you need a refresher on anything I've taught
+    you.
   - And that's all you need to know for your first day!
   - Good luck and make this cent proud!
-  textSpeed: 0.1
+  voiceLines:
+  - {fileID: 8300000, guid: 32a46649bee0cd04a8aac501bfb88c92, type: 3}
+  - {fileID: 8300000, guid: 7def6c5b688a6fc4585e573eab93bccb, type: 3}
+  - {fileID: 8300000, guid: 8cba42187402a394d8fcad7ea614649b, type: 3}
+  - {fileID: 8300000, guid: dfcf69fdfe898c14bb43b3c78623e565, type: 3}
+  - {fileID: 8300000, guid: 9fdb035506c7ce943af5bd51844abc2a, type: 3}
+  - {fileID: 8300000, guid: afc80ce50583fd945884da28fa32b816, type: 3}
+  - {fileID: 8300000, guid: d384da607bb56be44b4b6eb2e2254a1b, type: 3}
+  - {fileID: 8300000, guid: e2d960b0d2e9dde448c5a892d99a77eb, type: 3}
+  - {fileID: 8300000, guid: a37ed092adc3c324da83255a36fce804, type: 3}
+  - {fileID: 8300000, guid: 9a9060453537c9544a75a3014958ce58, type: 3}
+  - {fileID: 8300000, guid: a365067ec613d63438d950bc74b4b7f5, type: 3}
+  - {fileID: 8300000, guid: b8f2fa81dd2ff014b81110ca405bc4b0, type: 3}
+  - {fileID: 8300000, guid: 374c6dd43f4cafe48be753af670e7d56, type: 3}
+  - {fileID: 8300000, guid: a574fd0d639df6d4f9ada0c0b8d88b18, type: 3}
+  - {fileID: 8300000, guid: 4faadf6797a36f54fbc94ebee9b8a097, type: 3}
+  audioSource: {fileID: 689208992}
+  textSpeed: 0.01
   textCount: 0
 --- !u!1 &596811369
 GameObject:
@@ -659,6 +678,135 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642027166}
   m_CullTransparentMesh: 1
+--- !u!1 &689208991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 689208993}
+  - component: {fileID: 689208992}
+  m_Layer: 0
+  m_Name: Tutorial Lines Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &689208992
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689208991}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &689208993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689208991}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1158.9678, y: 693.09174, z: -3.1239352}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &814456490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1847,3 +1995,4 @@ SceneRoots:
   - {fileID: 814456492}
   - {fileID: 1550965839}
   - {fileID: 1355575263}
+  - {fileID: 689208993}

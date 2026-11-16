@@ -10,6 +10,7 @@ public class MenuTraversalSystem : MonoBehaviour
     public GameObject SettingPanel;
     public GameObject MusicPanel;
     public GameObject MenuPanel;
+    public GameObject MrCentPanel;
 
     public MenuPulloutScript MenuPullout;
     private bool isAnyPanelOpen;
@@ -46,12 +47,21 @@ public class MenuTraversalSystem : MonoBehaviour
         pauseState.ChangePauseState();
     }
 
+    public void OpenMrCentPanel()
+    {
+        isAnyPanelOpen = true;
+        MenuPanel.SetActive(false);
+        MrCentPanel.SetActive(true);
+        pauseState.ChangePauseState();
+    }
+
     public void CloseOpenPanel()
     {
         isAnyPanelOpen = false;
         SettingPanel.SetActive(false);
         MusicPanel.SetActive(false);
         PlayerInfoPanel.SetActive(false);
+        MrCentPanel.SetActive(false);
         MenuPanel.SetActive(true);
         pauseState.ChangePauseState();
     }

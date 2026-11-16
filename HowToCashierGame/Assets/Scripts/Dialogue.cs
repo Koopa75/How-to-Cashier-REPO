@@ -13,6 +13,8 @@ public class Dialogue : MonoBehaviour
     public GameObject checkoutScreen;
     public GameObject settingsScreen;
     public string[] lines;
+    public AudioClip[] voiceLines;
+    public AudioSource audioSource;
     public float textSpeed;
     public float textCount = 0;
 
@@ -44,6 +46,13 @@ public class Dialogue : MonoBehaviour
     void StartDialogue()
     {
         index = 0;
+
+        if (voiceLines.Length > index && voiceLines[index] != null)
+        {
+            audioSource.clip = voiceLines[index];
+            audioSource.Play();
+        }
+        
         StartCoroutine(TypeLine());
     }
 
@@ -63,7 +72,15 @@ public class Dialogue : MonoBehaviour
             index++;
             textCount++;
             textComponent.text = string.Empty;
-            if(textCount == 7)
+
+            if (voiceLines.Length > index && voiceLines[index] != null)
+            {
+                audioSource.Stop();
+                audioSource.clip = voiceLines[index];
+                audioSource.Play();
+            }
+
+            if (textCount == 7)
             {
                 registerScreen.SetActive(true);
             }

@@ -11,7 +11,7 @@ public class InteractionController : MonoBehaviour
     public CustomerSpawner removeCustomer;
     public AudioSource checkoutSound;
     public TextMeshProUGUI CustomersServedText;
-    private int CustomersServed = 0;
+    public int CustomersServed = 0;
 
     public static InteractionController instance
     {
