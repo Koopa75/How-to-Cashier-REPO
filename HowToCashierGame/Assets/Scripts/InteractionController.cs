@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -72,7 +73,6 @@ public class InteractionController : MonoBehaviour
         }
         itemList.Clear();
         UpdateCost();
-        removeCustomer.RemoveCustomer();
     }
 
     public void UpdateCost()
@@ -108,22 +108,32 @@ public class InteractionController : MonoBehaviour
             }
         }
         ClearItems();
-
+        removeCustomer.RemoveCustomer();
         CustomersServed++;
         CustomersServedText.SetText("Customers Served: " + CustomersServed);
-
-        SpawnNewItems();
+        StartCoroutine(ItemSpawnCountdown(1.5f));
+        
         UpdateCost();
     }
 
     public void SpawnNewItems()
     {
+
         difficultyRamping += 1f;
         for (int i = 0; i < (int)difficultyRamping; i++)
         {
             Instantiate(itemprefabs[Random.Range(0, itemprefabs.Length)], itemsparent.position + new Vector3(-0.75f, 1.5f, 0f) + Random.insideUnitSphere * 0.25f, Random.rotation, itemsparent);
         }
+        
     }
+
+    IEnumerator ItemSpawnCountdown(float timeBeforeSpawn)
+    {
+        yield return new WaitForSeconds(timeBeforeSpawn);
+
+        SpawnNewItems();
+    }
+    
 
     public Transform itemsparent;
     public Minidisplay minidisplay;

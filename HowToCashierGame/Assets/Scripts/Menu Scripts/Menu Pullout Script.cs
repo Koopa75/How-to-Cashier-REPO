@@ -19,7 +19,7 @@ public class MenuPulloutScript : MonoBehaviour
     private float movePanelMax = 500f;
 
     private bool isOpen = false;
-    private bool finisedOpening = false;
+    private bool finisedMoving = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,17 +31,19 @@ public class MenuPulloutScript : MonoBehaviour
 
     private void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Tab))
+        Debug.Log("Is the Menu Panel Moving: " + finisedMoving);
+        if (Input.GetKeyDown(KeyCode.Tab) && finisedMoving)
         {
             if (!menuTraversalSystem.CheckAnyOpenSettingPanelState())
             {
                 if (isOpen)
-                { 
+                {
+                    finisedMoving = false;
                     CloseGameMenuPanel();
                 }
                 else
                 {
+                    finisedMoving = false;
                     OpenGameMenuPanel();
                 }
             }
@@ -81,6 +83,7 @@ public class MenuPulloutScript : MonoBehaviour
         StartCoroutine(SlidePanelOut(inGameMenuPanel, endPos, 0.4f));
 
         barButton.SetActive(true);
+
     }
 
 
@@ -99,6 +102,7 @@ public class MenuPulloutScript : MonoBehaviour
             yield return null;
         }
         pauseSystem.ChangePauseState();
+        finisedMoving = true;
         menuPanel.transform.position = targetPos;
     }
 
@@ -119,6 +123,7 @@ public class MenuPulloutScript : MonoBehaviour
 
         menuPanel.transform.position = targetPos;
         inGameMenuPanel.SetActive(false);
+        finisedMoving = true;
     }
 
     public bool GetMenuOpenCloseState()

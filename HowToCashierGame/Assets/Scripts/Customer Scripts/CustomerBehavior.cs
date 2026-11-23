@@ -16,6 +16,7 @@ public class CustomerBehavior : MonoBehaviour
     public float moveSpeed = 1f;
 
     private bool moving;
+
     void Start()
     {
         CustomerAnimations = GetComponent<Animator>();
@@ -38,6 +39,7 @@ public class CustomerBehavior : MonoBehaviour
 
         if (moving)
         {
+
             transform.rotation = Quaternion.Euler(0f, 90f, 0f);
         }
         else
@@ -45,13 +47,14 @@ public class CustomerBehavior : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
 
-        Debug.Log("Is the Customer Walking: " + moving);
     }
 
     public void NewTargetPosition(Vector3 newTargetPos)
     {
         targetPosition = newTargetPos;
     }
+
+
 
 
 

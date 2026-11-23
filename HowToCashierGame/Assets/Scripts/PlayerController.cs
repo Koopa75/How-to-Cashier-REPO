@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
         {
             if (currentCam == -1)
             {
+                Cursor.lockState = CursorLockMode.Locked;
                 Vector2 lookDesire = lookAction.ReadValue<Vector2>() * mouseSensitivity.GetMouseSensitivity();
                 lookDesire /= 6f;
                 lookDesire *= 120f;
@@ -207,7 +208,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
             currentCam = -1;
-            //InteractionController.instance.UpdateCost();
             return;
         }
         transform.position = new Vector3(-3.2f, 0.9f, -0.6f);

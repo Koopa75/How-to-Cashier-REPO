@@ -68,13 +68,15 @@ public class CustomerSpawner : MonoBehaviour
         {
             SpawnCustomer();
         }
-        Debug.Log("Current Customers: " + CurrentCustomers.Count + "\nFirst Customer in Line: " + CurrentCustomers[0]);
+
         MoveUpCustomers();
+
     }
 
 
     public void MoveUpCustomers()
     {
+
         int counter = 0;
         if (CurrentCustomers.Count > 0)
         {
@@ -82,8 +84,6 @@ public class CustomerSpawner : MonoBehaviour
             {
                 Vector3 targetPosition = new Vector3(FirstInLinePosition.position.x - (1 * i), FirstInLinePosition.position.y, FirstInLinePosition.position.z);
                 CurrentCustomers[i].GetComponent<CustomerBehavior>().NewTargetPosition(targetPosition);
-
-                Debug.Log("Customer " + i + "'s position: " + CurrentCustomers[i].transform.position);
                 counter++;
             }
 
@@ -118,5 +118,12 @@ public class CustomerSpawner : MonoBehaviour
     {
         return FirstInLinePosition.position + Vector3.left * index * customerDistance;
     }
+
+
+    public int GetCustomerListSize()
+    {
+        return CurrentCustomers.Count;
+    }
+
 
 }

@@ -1,11 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using TMPro;
-using System.Collections.Generic;
 
 public class CheckoutBag : MonoBehaviour
 {
+
+    public AudioSource baggingSoundEffect;
+    public SoundSystem baggingVolume;
+
+
     public void OnTriggerEnter(Collider other)
     {
         PhysicsItem item = other.gameObject.GetComponent<PhysicsItem>();
@@ -15,6 +21,9 @@ public class CheckoutBag : MonoBehaviour
             {
                 if (item.Bag())
                 {
+                    baggingSoundEffect.volume = baggingVolume.CheckSoundEffectSliderValue() * baggingVolume.CheckMasterSliderValue();
+                    baggingSoundEffect.Play();
+
                     // Bagging sound effect
                 }
                 else
@@ -34,6 +43,8 @@ public class CheckoutBag : MonoBehaviour
             {
                 if (item.Bag())
                 {
+                    baggingSoundEffect.volume = baggingVolume.CheckSoundEffectSliderValue() * baggingVolume.CheckMasterSliderValue();
+                    baggingSoundEffect.Play();
                     // Bagging sound effect
                 }
                 else
@@ -43,4 +54,5 @@ public class CheckoutBag : MonoBehaviour
             }
         }
     }
+
 }
