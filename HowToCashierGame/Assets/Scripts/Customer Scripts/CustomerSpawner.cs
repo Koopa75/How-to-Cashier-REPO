@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CustomerSpawner : MonoBehaviour
 {
+    public DayScript dayScript;
+
     public GameObject[] CustomerPrefab;
 
     public Transform FirstInLinePosition;
@@ -106,10 +108,13 @@ public class CustomerSpawner : MonoBehaviour
 
     public void RandCusSpawnChance()
     {
-        int value = UnityEngine.Random.Range(0, SpawnChance);
-        if (value < 3)
+        if (!dayScript.GetIsDayOver())
         {
-            SpawnCustomer();
+            int value = UnityEngine.Random.Range(0, SpawnChance);
+            if (value < 3)
+            {
+                SpawnCustomer();
+            }
         }
     }
 

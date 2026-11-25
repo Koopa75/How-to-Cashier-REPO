@@ -16,6 +16,7 @@ public class PhysicsItem : MonoBehaviour
 
     public void Update()
     {
+
         if (transform.localPosition.y < 0.5f)
         {
             if (item.lame)
@@ -36,6 +37,7 @@ public class PhysicsItem : MonoBehaviour
         dragging = true;
         gameObject.layer = 8;
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
+       
     }
 
     public void UpdateDraggingPosition(Vector3 pos)

@@ -10,6 +10,9 @@ public class CheckoutBag : MonoBehaviour
 
     public AudioSource baggingSoundEffect;
     public SoundSystem baggingVolume;
+    private bool canGrabCard = false;
+    private int itemsInBag = 0;
+
 
 
     public void OnTriggerEnter(Collider other)
@@ -24,7 +27,14 @@ public class CheckoutBag : MonoBehaviour
                     baggingSoundEffect.volume = baggingVolume.CheckSoundEffectSliderValue() * baggingVolume.CheckMasterSliderValue();
                     baggingSoundEffect.Play();
 
-                    // Bagging sound effect
+                    itemsInBag++;
+                        
+                    if (itemsInBag == InteractionController.instance.GetTotalItems())
+                    {
+                        canGrabCard = true;
+                    }
+                    
+
                 }
                 else
                 {
@@ -45,7 +55,13 @@ public class CheckoutBag : MonoBehaviour
                 {
                     baggingSoundEffect.volume = baggingVolume.CheckSoundEffectSliderValue() * baggingVolume.CheckMasterSliderValue();
                     baggingSoundEffect.Play();
-                    // Bagging sound effect
+
+                    itemsInBag++;
+
+                    if (itemsInBag == InteractionController.instance.GetTotalItems())
+                    {
+                        canGrabCard = true;
+                    }
                 }
                 else
                 {
@@ -53,6 +69,15 @@ public class CheckoutBag : MonoBehaviour
                 }
             }
         }
+    }
+
+    public bool GetCanGrabCard()
+    {
+        return canGrabCard;
+    }
+    public void SetCanGrabCard(bool cardGrabStatus) 
+    {
+        canGrabCard = cardGrabStatus;
     }
 
 }

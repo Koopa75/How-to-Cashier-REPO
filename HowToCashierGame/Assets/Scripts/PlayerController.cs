@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public PauseSystem IsGamePaused;
     public SettingsScript mouseSensitivity;
     public MenuPulloutScript isMenuOpen;
+    public DayScript dayScript;
 
     private bool isAtRegister = false;
     public static PlayerController instance
@@ -112,69 +113,72 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                Vector2 mousePos = Mouse.current.position.ReadValue();
-                Ray clickRay = mainCamera.ScreenPointToRay(mousePos);
-                if (holding != null)
+                if (!dayScript.GetIsDayOver())
                 {
-                    if (Physics.Raycast(clickRay, out RaycastHit hit, 100f, LayerMask.GetMask("Click Helper")))
+                    Vector2 mousePos = Mouse.current.position.ReadValue();
+                    Ray clickRay = mainCamera.ScreenPointToRay(mousePos);
+                    if (holding != null)
                     {
-                        holding.UpdateDraggingPosition(hit.point + holdingObjectOffset);
-                    }
-                    if (!clickAction.IsPressed() || clickAction.WasReleasedThisFrame())
-                    {
-                        holding.Drop();
-                        holding = null;
-                    }
-                }
-                else
-                {
-                    RaycastHit hit;
-                    CameraTransitionButton button = null;
-                    if (Physics.Raycast(clickRay, out hit, 100f, LayerMask.GetMask("UI", "Items", "GhostItems")))
-                    {
-                        GameObject obj = hit.collider.gameObject;
-                        button = obj.GetComponent<CameraTransitionButton>();
-                    }
-                    for (var i = 0; i < cameraTransitionButtons.Length; i++)
-                    {
-                        if (cameraTransitionButtons[i] == button)
+                        if (Physics.Raycast(clickRay, out RaycastHit hit, 100f, LayerMask.GetMask("Click Helper")))
                         {
-                            cameraTransitionButtons[i].TryMouseEnter();
+                            holding.UpdateDraggingPosition(hit.point + holdingObjectOffset);
                         }
-                        else
+                        if (!clickAction.IsPressed() || clickAction.WasReleasedThisFrame())
                         {
-                            cameraTransitionButtons[i].TryMouseExit();
+                            holding.Drop();
+                            holding = null;
                         }
                     }
-                }
-                if (clickAction.WasPressedThisFrame())
-                {
-                    RaycastHit hit;
-                    if (Physics.Raycast(clickRay, out hit, 5f, LayerMask.GetMask("Items", "GhostItems")))
+                    else
                     {
-                        GameObject obj = hit.collider.gameObject;
-                        PhysicsItem item = obj.GetComponent<PhysicsItem>();
-                        if (item != null)
+                        RaycastHit hit;
+                        CameraTransitionButton button = null;
+                        if (Physics.Raycast(clickRay, out hit, 100f, LayerMask.GetMask("UI", "Items", "GhostItems")))
                         {
-                            holdingPlaneOffset = hit.point.y;
-                            helperPlane.transform.position = new Vector3(helperPlane.transform.position.x, holdingPlaneOffset, helperPlane.transform.position.y);
-                            /*
-                            if (Physics.Raycast(clickRay, out RaycastHit hit2, 100f, LayerMask.GetMask("Click Helper")))
+                            GameObject obj = hit.collider.gameObject;
+                            button = obj.GetComponent<CameraTransitionButton>();
+                        }
+                        for (var i = 0; i < cameraTransitionButtons.Length; i++)
+                        {
+                            if (cameraTransitionButtons[i] == button)
                             {
-                                holdingObjectOffset = obj.transform.position - hit2.point;
-                            }*/
-                            holdingObjectOffset = obj.transform.position - hit.point;
-                            holding = item;
-                            holding.Pickup();
+                                cameraTransitionButtons[i].TryMouseEnter();
+                            }
+                            else
+                            {
+                                cameraTransitionButtons[i].TryMouseExit();
+                            }
                         }
                     }
-                    else if (Physics.Raycast(clickRay, out hit, 100f, LayerMask.GetMask("UI")))
+                    if (clickAction.WasPressedThisFrame())
                     {
-                        GameObject obj = hit.collider.gameObject;
-                        CameraTransitionButton button = obj.GetComponent<CameraTransitionButton>();
-                        if (button != null)
+                        RaycastHit hit;
+                        if (Physics.Raycast(clickRay, out hit, 5f, LayerMask.GetMask("Items", "GhostItems")))
                         {
-                            button.Click();
+                            GameObject obj = hit.collider.gameObject;
+                            PhysicsItem item = obj.GetComponent<PhysicsItem>();
+                            if (item != null)
+                            {
+                                holdingPlaneOffset = hit.point.y;
+                                helperPlane.transform.position = new Vector3(helperPlane.transform.position.x, holdingPlaneOffset, helperPlane.transform.position.y);
+                                /*
+                                if (Physics.Raycast(clickRay, out RaycastHit hit2, 100f, LayerMask.GetMask("Click Helper")))
+                                {
+                                    holdingObjectOffset = obj.transform.position - hit2.point;
+                                }*/
+                                holdingObjectOffset = obj.transform.position - hit.point;
+                                holding = item;
+                                holding.Pickup();
+                            }
+                        }
+                        else if (Physics.Raycast(clickRay, out hit, 100f, LayerMask.GetMask("UI")))
+                        {
+                            GameObject obj = hit.collider.gameObject;
+                            CameraTransitionButton button = obj.GetComponent<CameraTransitionButton>();
+                            if (button != null)
+                            {
+                                button.Click();
+                            }
                         }
                     }
                 }

@@ -33,7 +33,9 @@ public class DayScript : MonoBehaviour
     public bool isDayOver = false;
     public bool atRegister = false;
     int finalCustomerCount = 0;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+
+    public static DayScript instance;
 
 
     // Update is called once per frame
@@ -115,22 +117,22 @@ public class DayScript : MonoBehaviour
         {
             customerRankLetter.SetText("F");
         }
-        else if(finalCustomerCount >= 1 && finalCustomerCount <= 3)
+        else if(finalCustomerCount >= 1 && finalCustomerCount <= 2)
         {
             customerRankLetter.SetText("D");
             finalScore += 1;
         }
-        else if(finalCustomerCount >= 4 && finalCustomerCount <= 6)
+        else if(finalCustomerCount >= 3 && finalCustomerCount <= 4)
         {
             customerRankLetter.SetText("C");
             finalScore += 2;
         }
-        else if(finalCustomerCount >= 7 && finalCustomerCount <= 9)
+        else if(finalCustomerCount >= 5 && finalCustomerCount <= 7)
         {
             customerRankLetter.SetText("B");
             finalScore += 3;
         }
-        else if(finalCustomerCount >= 10 && finalCustomerCount <= 12)
+        else if(finalCustomerCount >= 8 && finalCustomerCount <= 10)
         {
             customerRankLetter.SetText("A");
             finalScore += 4;
@@ -206,5 +208,10 @@ public class DayScript : MonoBehaviour
             }
         } 
 
+    }
+
+    public bool GetIsDayOver()
+    {
+        return isDayOver;
     }
 }

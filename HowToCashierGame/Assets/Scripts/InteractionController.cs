@@ -8,11 +8,15 @@ using UnityEngine.UI;
 public class InteractionController : MonoBehaviour
 {
     public SoundSystem checkoutSoundVolume;
-
+    public CheckoutBag checkoutBag;
     public CustomerSpawner removeCustomer;
+    public CardHandler cardHandler;
     public AudioSource checkoutSound;
     public TextMeshProUGUI CustomersServedText;
     public int CustomersServed = 0;
+
+    private int totalItems = 0;
+
 
     public static InteractionController instance
     {
@@ -52,6 +56,7 @@ public class InteractionController : MonoBehaviour
 
     public void AddItem(ItemModel item)
     {
+        totalItems++;
         itemList.Add(item);
     }
 
@@ -85,8 +90,16 @@ public class InteractionController : MonoBehaviour
             if (item.scanned && !item.payed) _total += item.Cost;
             if (!item.bagged && !item.lame) allBagged = false;
         }
-        checkoutbutton.interactable = allBagged;
-        allcheckedouttext.gameObject.SetActive(allBagged);
+        //Make it so this is only active if the card has also been swipped
+        if (cardHandler.GetHasSwiped())
+        {
+            checkoutbutton.interactable = allBagged;
+        }
+        else
+        {
+            checkoutbutton.interactable = false;
+        }
+            allcheckedouttext.gameObject.SetActive(allBagged);
         Total = _total;
     }
 
@@ -108,11 +121,15 @@ public class InteractionController : MonoBehaviour
             }
         }
         ClearItems();
+        checkoutBag.SetCanGrabCard(false);
+        cardHandler.SetHasSwiped(false);
         removeCustomer.RemoveCustomer();
+        cardHandler.DisableCard();
+
         CustomersServed++;
         CustomersServedText.SetText("Customers Served: " + CustomersServed);
+
         StartCoroutine(ItemSpawnCountdown(1.5f));
-        
         UpdateCost();
     }
 
@@ -132,6 +149,14 @@ public class InteractionController : MonoBehaviour
         yield return new WaitForSeconds(timeBeforeSpawn);
 
         SpawnNewItems();
+    }
+
+
+
+
+    public int GetTotalItems()
+    {
+        return totalItems;
     }
     
 
