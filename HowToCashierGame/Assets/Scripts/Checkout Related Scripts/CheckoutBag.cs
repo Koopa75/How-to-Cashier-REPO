@@ -10,7 +10,7 @@ public class CheckoutBag : MonoBehaviour
 
     public AudioSource baggingSoundEffect;
     public SoundSystem baggingVolume;
-    private bool canGrabCard = false;
+    private bool customerReadyToPay = false;
     private int itemsInBag = 0;
 
 
@@ -31,7 +31,7 @@ public class CheckoutBag : MonoBehaviour
                         
                     if (itemsInBag == InteractionController.instance.GetTotalItems())
                     {
-                        canGrabCard = true;
+                        customerReadyToPay = true;
                     }
                     
 
@@ -60,7 +60,7 @@ public class CheckoutBag : MonoBehaviour
 
                     if (itemsInBag == InteractionController.instance.GetTotalItems())
                     {
-                        canGrabCard = true;
+                        customerReadyToPay = true;
                     }
                 }
                 else
@@ -71,13 +71,14 @@ public class CheckoutBag : MonoBehaviour
         }
     }
 
-    public bool GetCanGrabCard()
+    public bool GetCustomerReadyToPay()
     {
-        return canGrabCard;
+        return customerReadyToPay;
     }
-    public void SetCanGrabCard(bool cardGrabStatus) 
+    public void ResetCheckoutBag()
     {
-        canGrabCard = cardGrabStatus;
+        customerReadyToPay = false;
+        itemsInBag = 0;
     }
 
 }

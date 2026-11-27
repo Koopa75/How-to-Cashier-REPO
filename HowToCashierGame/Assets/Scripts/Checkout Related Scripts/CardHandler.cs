@@ -3,6 +3,7 @@ using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static ChoosePaymentMethod;
 
 public class CardHandler : MonoBehaviour
 {
@@ -14,12 +15,15 @@ public class CardHandler : MonoBehaviour
     public UnityEngine.UI.Button swipCardButton;
 
     public CheckoutBag checkoutBag;
+    public ChoosePaymentMethod choosePaymentMethod;
+    public CustomerSpawner customerSpawner;
 
     private bool hasCardBeenGrabbed = false;
     private bool hasSwiped = false;
 
     public Transform StartSwipePosition;
     public Transform EndSwipePosition;
+    public Transform InHandPosition;
 
     private Vector3 startPosition;
     private Vector3 endPosition;
@@ -57,16 +61,28 @@ public class CardHandler : MonoBehaviour
 
     public void CheckCanGrabCardStatus()
     {
-        if (checkoutBag.GetCanGrabCard())
+        GameObject currentCustomer = customerSpawner.GetCurrentCustomer();
+
+        if (currentCustomer == null)
+            return;
+
+        CustomerBehavior customerBehavior = currentCustomer.GetComponent<CustomerBehavior>();
+
+        if (checkoutBag.GetCustomerReadyToPay() && customerBehavior.paymentMethod == PaymentMethod.Card)
         {
             grabCardButton.interactable = true;
             grabCardButton.gameObject.SetActive(true);
+            customerCard.SetActive(true);
         }
     }
 
     public void ActivateCard()
     {
-        customerCard.SetActive(true);
+
+        Vector3 newCardPos = InHandPosition.position;
+        customerCard.transform.position = newCardPos;
+
+
         hasCardBeenGrabbed = true;
         EnableCardSwipeButton();
     }

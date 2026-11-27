@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static ChoosePaymentMethod;
 
 public class InteractionController : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class InteractionController : MonoBehaviour
     public CheckoutBag checkoutBag;
     public CustomerSpawner removeCustomer;
     public CardHandler cardHandler;
+    public CashHandler cashHandler;
+
+
     public AudioSource checkoutSound;
     public TextMeshProUGUI CustomersServedText;
     public int CustomersServed = 0;
@@ -38,7 +42,7 @@ public class InteractionController : MonoBehaviour
 
     public void Update()
     {
-        
+        cashHandler.SetTotalPrice((float) Total / 100);
     }
 
     public int Total
@@ -77,6 +81,7 @@ public class InteractionController : MonoBehaviour
             item.lame = true;
         }
         itemList.Clear();
+        totalItems = 0;
         UpdateCost();
     }
 
@@ -91,15 +96,35 @@ public class InteractionController : MonoBehaviour
             if (!item.bagged && !item.lame) allBagged = false;
         }
         //Make it so this is only active if the card has also been swipped
-        if (cardHandler.GetHasSwiped())
+
+        GameObject currentCustomer = removeCustomer.GetCurrentCustomer();
+
+        if (currentCustomer != null)
         {
-            checkoutbutton.interactable = allBagged;
+            PaymentMethod currentMethod =
+                currentCustomer.GetComponent<CustomerBehavior>()
+                .paymentMethod;
+
+            switch (removeCustomer.GetCurrentCustomerPaymentMethod())
+            {
+                case PaymentMethod.Card:
+
+                    checkoutbutton.interactable = allBagged && cardHandler.GetHasSwiped();
+                    break;
+
+                    
+                case PaymentMethod.Cash:
+                    //Debug.Log("Is the Button Interactuable: " + allBagged);
+                    checkoutbutton.interactable = allBagged;
+                            //cashHandler.GetCorrectChangeGiven();
+                    break;  
+            }
         }
         else
         {
             checkoutbutton.interactable = false;
         }
-            allcheckedouttext.gameObject.SetActive(allBagged);
+        allcheckedouttext.gameObject.SetActive(allBagged);
         Total = _total;
     }
 
@@ -121,7 +146,7 @@ public class InteractionController : MonoBehaviour
             }
         }
         ClearItems();
-        checkoutBag.SetCanGrabCard(false);
+        checkoutBag.ResetCheckoutBag();
         cardHandler.SetHasSwiped(false);
         removeCustomer.RemoveCustomer();
         cardHandler.DisableCard();
@@ -135,9 +160,9 @@ public class InteractionController : MonoBehaviour
 
     public void SpawnNewItems()
     {
-
-        difficultyRamping += 1f;
-        for (int i = 0; i < (int)difficultyRamping; i++)
+        int itemSpawnAmount = Random.Range(3, 8);
+       // difficultyRamping += 1f; This will be tied to the day
+        for (int i = 0; i < (int)itemSpawnAmount; i++)
         {
             Instantiate(itemprefabs[Random.Range(0, itemprefabs.Length)], itemsparent.position + new Vector3(-0.75f, 1.5f, 0f) + Random.insideUnitSphere * 0.25f, Random.rotation, itemsparent);
         }
@@ -168,7 +193,7 @@ public class InteractionController : MonoBehaviour
     public PhysicsItem[] itemprefabs;
 
     private int total;
-    private float difficultyRamping;
+    private float difficultyRamping; //Gonna Tie this to the current day at some point
 
     private List<ItemModel> itemList = new List<ItemModel>();
 }

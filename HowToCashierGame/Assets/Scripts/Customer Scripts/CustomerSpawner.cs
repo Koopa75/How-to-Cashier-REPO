@@ -1,16 +1,22 @@
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class CustomerSpawner : MonoBehaviour
 {
     public DayScript dayScript;
+    public ChoosePaymentMethod choosePaymentMethod;
 
     public GameObject[] CustomerPrefab;
 
     public Transform FirstInLinePosition;
+    public Transform customerLeaveToPos;
     public Transform CustomerHolder;
+
+    public float customerLeaveSpeed = 4f;
     public int customerDistance = 1;
     public int MaxCustomers = 3;
     public int SpawnInterval = 5;
@@ -28,7 +34,6 @@ public class CustomerSpawner : MonoBehaviour
 
     void Start()
     {
-        //CustomerAnimations = GetComponent<Animator>();
         Transform NewCustomerPos = FirstInLinePosition;
         Debug.Log(FirstInLinePosition.localPosition);
         SpawnCustomer();
@@ -59,21 +64,34 @@ public class CustomerSpawner : MonoBehaviour
         int CustomerChoice = UnityEngine.Random.Range(0, CustomerPrefab.Length);
         GameObject Customer = Instantiate(CustomerPrefab[CustomerChoice], GetLinePosition(CurrentCustomers.Count), Quaternion.identity);
         Customer.transform.SetParent(CustomerHolder);
+
+        CustomerBehavior customerBehavior = Customer.GetComponent<CustomerBehavior>();
+        customerBehavior.paymentMethod = choosePaymentMethod.ChoosePaymentType();
+
+        Debug.Log(Customer.name + " will pay with " + customerBehavior.paymentMethod);
+
         CurrentCustomers.Add(Customer);
+
     }
 
     public void RemoveCustomer()
     {
-        GameObject.Destroy(CurrentCustomers[0]);
+        GameObject leavingCustomer = CurrentCustomers[0];
+
         CurrentCustomers.RemoveAt(0);
+
+        leavingCustomer.GetComponent<CustomerBehavior>()
+            .LeaveStore(customerLeaveToPos.position, customerLeaveSpeed);
+
         if (CurrentCustomers.Count == 0)
         {
             SpawnCustomer();
         }
 
         MoveUpCustomers();
-
     }
+
+
 
 
     public void MoveUpCustomers()
@@ -128,6 +146,26 @@ public class CustomerSpawner : MonoBehaviour
     public int GetCustomerListSize()
     {
         return CurrentCustomers.Count;
+    }
+
+    public GameObject GetCurrentCustomer()
+    {
+        if (CurrentCustomers.Count > 0)
+        {
+            return CurrentCustomers[0];
+        }
+
+        return null;
+    }
+
+    public PaymentMethod GetCurrentCustomerPaymentMethod()
+    {
+        if (CurrentCustomers.Count == 0)
+        {
+            return PaymentMethod.Card;
+        }
+
+        return CurrentCustomers[0].GetComponent<CustomerBehavior>().paymentMethod;
     }
 
 

@@ -31,7 +31,6 @@ public class MenuPulloutScript : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Is the Menu Panel Moving: " + finisedMoving);
         if (Input.GetKeyDown(KeyCode.Tab) && finisedMoving)
         {
             if (!menuTraversalSystem.CheckAnyOpenSettingPanelState())
