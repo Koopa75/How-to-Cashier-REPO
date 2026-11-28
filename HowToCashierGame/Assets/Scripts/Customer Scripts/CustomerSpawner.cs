@@ -14,6 +14,7 @@ public class CustomerSpawner : MonoBehaviour
 
     public Transform FirstInLinePosition;
     public Transform customerLeaveToPos;
+    public Transform customerSpawnPos;
     public Transform CustomerHolder;
 
     public float customerLeaveSpeed = 4f;
@@ -21,6 +22,7 @@ public class CustomerSpawner : MonoBehaviour
     public int MaxCustomers = 3;
     public int SpawnInterval = 5;
     public int SpawnChance = 7;
+    public float moveInSpeed = 2.5f;
 
 
 
@@ -62,17 +64,21 @@ public class CustomerSpawner : MonoBehaviour
     private void SpawnCustomer()
     {
         int CustomerChoice = UnityEngine.Random.Range(0, CustomerPrefab.Length);
-        GameObject Customer = Instantiate(CustomerPrefab[CustomerChoice], GetLinePosition(CurrentCustomers.Count), Quaternion.identity);
+        GameObject Customer = Instantiate(CustomerPrefab[CustomerChoice], customerSpawnPos.position, Quaternion.identity);
         Customer.transform.SetParent(CustomerHolder);
 
         CustomerBehavior customerBehavior = Customer.GetComponent<CustomerBehavior>();
         customerBehavior.paymentMethod = choosePaymentMethod.ChoosePaymentType();
+
+        Vector3 MoveToPos = GetLinePosition(CurrentCustomers.Count);
+        customerBehavior.JoinLine(MoveToPos, moveInSpeed);
 
         Debug.Log(Customer.name + " will pay with " + customerBehavior.paymentMethod);
 
         CurrentCustomers.Add(Customer);
 
     }
+   
 
     public void RemoveCustomer()
     {

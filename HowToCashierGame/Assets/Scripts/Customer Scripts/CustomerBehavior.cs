@@ -16,16 +16,21 @@ public class CustomerBehavior : MonoBehaviour
 
     private bool moving;
     private bool isLeaving = false;
+    private bool isJoiningLine = false;
 
-    void Start()
+    private void OnAwake()
     {
         CustomerAnimations = GetComponent<Animator>();
+    }
+    
+    void Start()
+    {
         targetPosition = transform.position;
     }
 
     void Update()
     {
-        if (!isLeaving)
+        if (!isLeaving && !isJoiningLine)
         {
             transform.position = Vector3.MoveTowards(
                 transform.position,
@@ -84,5 +89,33 @@ public class CustomerBehavior : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void JoinLine(Vector3 moveToPos, float joinSpeed)
+    {
+        transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+        StartCoroutine(MoveNewCustomerToPos(moveToPos, joinSpeed));
+    }
+    private IEnumerator MoveNewCustomerToPos(Vector3 moveToPos, float joinSpeed)
+    {
+        isJoiningLine = true;
+
+        if (CustomerAnimations == null)
+        {
+            CustomerAnimations = GetComponent<Animator>();
+        }
+        CustomerAnimations.SetBool("IsMoving", true);
+
+        while (Vector3.Distance(transform.position, moveToPos) > 0.01f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, moveToPos, joinSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        CustomerAnimations.SetBool("IsMoving", false);
+
+        targetPosition = moveToPos;
+
+        isJoiningLine = false;
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+    }
 
 }
